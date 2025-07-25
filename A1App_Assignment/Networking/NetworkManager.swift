@@ -11,11 +11,11 @@ class NetworkManager {
     static let shared = NetworkManager()
     private init() {}
 
-    private let baseURL = "https://core-apis.a1apps.co/ios/interview-details"
+    
 
     func fetchWardrobes(completion: @escaping (Result<[ListItem], Error>) -> Void) {
-        guard let url = URL(string: baseURL) else {
-            completion(.failure(NSError(domain: "Invalid URL", code: -1)))
+        guard let url = URL(string: EndPoint.baseURL) else {
+            completion(.failure(NSError(domain: EndPoint.invalidURL_Message, code: -1)))
             return
         }
              let config = URLSessionConfiguration.ephemeral
@@ -37,7 +37,7 @@ class NetworkManager {
 
             do {
                 let response = try JSONDecoder().decode(ListResponse.self, from: data)
-                completion(.success(response.datas))
+                completion(.success(response.data))
             } catch {
                 completion(.failure(error))
             }

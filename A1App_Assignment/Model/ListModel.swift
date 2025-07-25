@@ -8,13 +8,14 @@
 import Foundation
 
 struct ListItem: Identifiable, Decodable, Equatable {
-    var id = UUID()
+    //var id = UUID()
     let image: String
     let email: String
     let name: String
     let age: Int
     let dob: String
+    var id: String { email }
 }
 struct ListResponse: Decodable {
-    let datas: [ListItem]
+    let data: [ListItem]
 }
